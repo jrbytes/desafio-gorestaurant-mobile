@@ -66,12 +66,12 @@ const Dashboard: React.FC = () => {
         },
       })
 
-      setFoods(
-        data.map(food => ({
-          ...food,
-          formattedPrice: formatValue(food.price),
-        })),
-      )
+      const foodsWithformattedPrice = data.map(food => ({
+        ...food,
+        formattedPrice: formatValue(food.price),
+      }))
+
+      setFoods(foodsWithformattedPrice)
     }
 
     loadFoods()
@@ -146,6 +146,7 @@ const Dashboard: React.FC = () => {
             {foods.map(food => (
               <Food
                 key={food.id}
+                style={{ flex: 1 }}
                 onPress={() => handleNavigate(food.id)}
                 activeOpacity={0.6}
                 testID={`food-${food.id}`}
